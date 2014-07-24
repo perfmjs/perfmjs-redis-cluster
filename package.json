@@ -2,7 +2,7 @@
   "name": "perfmjs-redis-cluster",
    "description":"perfmjs-redis-cluster is a Node.js version of Redis-rb-cluster",
   "author": "tony",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "start": "node start-server.js"
