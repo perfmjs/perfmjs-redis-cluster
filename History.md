@@ -1,3 +1,7 @@
+1.0.2 / 2014-07-25
+==================
+ * Remove: remove unuseful log
+
 1.0.1 / 2014-07-23
 ==================
  * the first stable version
