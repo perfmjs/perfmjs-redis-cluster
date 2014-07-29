@@ -1,3 +1,7 @@
+1.0.3 / 2014-07-29
+==================
+ * Add: add redis connection pool
+
 1.0.2 / 2014-07-25
 ==================
  * Remove: remove unuseful log

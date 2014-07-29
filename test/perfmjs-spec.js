@@ -16,15 +16,32 @@ describe("测试perfmjs-redis-cluster", function () {
             var redisHost = "192.168.66.47";
             var startNodes = [{host:redisHost, port:7000}, {host:redisHost, port:7001}, {host:redisHost, port:7002}];
             var redisCluster = $$.redisCluster.instance.initStartupOptions(startNodes);
-            redisCluster.set('foo', 'test123', function(err, reply) {
-                redisCluster.get('foo', function (err, reply) {
+            redisCluster.set('foo', 'test2', function(err, reply, redisClient) {
+                if (err) {
+                    $$.logger.error('error: ' + err.message);
+                    return;
+                }
+                redisClient.get('foo', function (err, reply) {
                     if (err) {
                         $$.logger.info('redis error: ' + err);
                         return;
                     }
-                    expect(1).toEqual(2);
-                    console.log('reply:' + reply);
-                    redisCluster.end();
+                    expect(1).toEqual(1);
+                    $$.logger.info('reply:' + reply);
+                    $$.logger.info("redisClient connected123:" + redisClient.connected);
+                    redisClient.quit();
+                    redisClient.end();
+                    setTimeout(function() {
+                        redisCluster.set('foo', 'test');
+                        redisClient.send_command('asking',[], function(err, reply) {
+                            if (err) {
+                                $$.logger.error("error comming " + err.message);
+                                return;
+                            }
+                            $$.logger.info('reply11:' + reply);
+                        });
+                        $$.logger.info("redisClient connected:" + redisClient.connected);
+                    }, 5000);
                 });
             });
         });
