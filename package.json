@@ -18,7 +18,7 @@
     "high performance"
   ],
   "dependencies": {
-    "perfmjs-node": "1.2.7",
+    "perfmjs-node": "1.2.8",
     "redis": "0.11.0"
   },
   "licenses": ["MIT"]
