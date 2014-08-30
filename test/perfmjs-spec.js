@@ -11,8 +11,7 @@ describe("测试perfmjs-redis-cluster", function () {
     it("应能测试通过redis#set方法", function() {
         require('../lib');
         perfmjs.ready(function($$, app) {
-            app.register('redisCluster', $$.redisCluster);
-            app.start('redisCluster');
+            app.registerAndStart($$.redisCluster);
             var redisHost = "192.168.66.47";
             var startNodes = [{host:redisHost, port:7000}, {host:redisHost, port:7001}, {host:redisHost, port:7002}];
             var redisCluster = $$.redisCluster.instance.initStartupOptions(startNodes);
