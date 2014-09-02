@@ -1,6 +1,6 @@
 perfmjs-redis-cluster
 =======
-perfmjs-redis-cluster is a Node.js version of Redis-rb-cluster. V1.0.5
+perfmjs-redis-cluster is a Node.js version of Redis-rb-cluster. V1.0.6
 
 Features:
 =======

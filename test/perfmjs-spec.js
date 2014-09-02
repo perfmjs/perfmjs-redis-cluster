@@ -45,4 +45,33 @@ describe("测试perfmjs-redis-cluster", function () {
             });
         });
     });
+    it("应能测试通过redis#pub/sub方法", function() {
+        perfmjs.ready(function($$, app) {
+            var redisHost = "192.168.66.47";
+            var startNodes = [
+                {host: redisHost, port: 7000},
+                {host: redisHost, port: 7001},
+                {host: redisHost, port: 7002}
+            ];
+            var channel = '/realtimeApp/publish/klpk';
+            app.stop($$.redisCluster.getName());
+            app.unregister($$.redisCluster.getName());
+            app.registerAndStart($$.redisCluster);
+            var redisCluster = $$.redisCluster.instance.initStartupOptions(startNodes);
+            console.log("keySlots:" + redisCluster._keyslot(channel));
+            $$.utils.nextTick(function() {
+                redisCluster.publish(channel, '{"入党申请":"我要把前30多年的党费一次性交给你,你看我党性如何？"}');
+            });
+            redisCluster.subscribe(channel, function(err, reply, redis) {
+                if (err) {
+                    $$.logger.error('error Occurred at redis subscribe: ' + err.message);
+                    return;
+                }
+                redis.on("message", function (channel, message) {
+                    console.log('channel:' + channel + "/message=" + message);
+                });
+            });
+            expect(1).toEqual(1);
+        });
+    });
 });
