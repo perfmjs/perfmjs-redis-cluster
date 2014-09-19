@@ -1,5 +1,6 @@
-1.0.9 / 2014-09-19
+1.1.0 / 2014-09-19
  * improved: 提升perfmjs-node版本到1.3.5
+ * improved: 提升redis版本到0.12.1
  * fixed: redis出错的时候不调用redisClient.end();
 
 1.0.8 / 2014-09-10

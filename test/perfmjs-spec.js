@@ -12,9 +12,7 @@ describe("测试perfmjs-redis-cluster", function () {
         require('../lib');
         perfmjs.ready(function($$, app) {
             app.registerAndStart($$.redisCluster);
-            var redisHost = "192.168.66.47";
-            var startNodes = [{host:redisHost, port:7000}, {host:redisHost, port:7001}, {host:redisHost, port:7002}];
-            var redisCluster = $$.redisCluster.instance.initStartupOptions(startNodes);
+            var redisCluster = $$.redisCluster.instance.initStartupOptions($$.sysConfig.config.get("redis.clusterNodes"));
             redisCluster.set('foo', 'test2', function(err, reply, redisClient) {
                 if (err) {
                     $$.logger.error('error: ' + err.message);
