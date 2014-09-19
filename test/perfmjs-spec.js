@@ -59,18 +59,20 @@ describe("测试perfmjs-redis-cluster", function () {
             app.registerAndStart($$.redisCluster);
             var redisCluster = $$.redisCluster.instance.initStartupOptions(startNodes);
             console.log("keySlots:" + redisCluster._keyslot(channel));
-            $$.utils.nextTick(function() {
+            //$$.utils.nextTick(function() {
+            setInterval(function() {
                 redisCluster.publish(channel, '316');
+            }, 2000);
+            //});
+            redisCluster.subscribe(channel, function(err, reply, redis) {
+                if (err) {
+                    $$.logger.error('error Occurred at redis subscribe: ' + err.message);
+                    return;
+                }
+                redis.on("message", function (channel, message) {
+                    console.log('channel:' + channel + "/message=" + message);
+                });
             });
-//            redisCluster.subscribe(channel, function(err, reply, redis) {
-//                if (err) {
-//                    $$.logger.error('error Occurred at redis subscribe: ' + err.message);
-//                    return;
-//                }
-//                redis.on("message", function (channel, message) {
-//                    console.log('channel:' + channel + "/message=" + message);
-//                });
-//            });
             expect(1).toEqual(1);
         });
     });

@@ -1,0 +1,6 @@
+{
+    "appenderFile": "E:/logs/app.log",
+    "redis": {
+        "clusterNodes": [{"host":"192.168.66.47","port":7000}, {"host":"192.168.66.47","port":7001}, {"host":"192.168.66.47","port":7002}]
+    }
+}
