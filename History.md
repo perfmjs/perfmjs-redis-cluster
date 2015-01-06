@@ -1,3 +1,6 @@
+1.1.1 / 2015-01-6
+ * improved: 提升perfmjs-node版本到1.4.1
+
 1.1.0 / 2014-09-19
  * improved: 提升perfmjs-node版本到1.3.5
  * improved: 提升redis版本到0.12.1
