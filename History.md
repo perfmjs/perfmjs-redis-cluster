@@ -1,3 +1,6 @@
+1.1.2 / 2015-08-06
+ * improved: 提升perfmjs-node版本到1.4.2
+
 1.1.1 / 2015-01-6
  * improved: 提升perfmjs-node版本到1.4.1
 
